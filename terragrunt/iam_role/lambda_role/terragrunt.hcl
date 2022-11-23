@@ -3,8 +3,18 @@ include "root" {
 }
 
 terraform {
-    source = "../../../modules/iam_role"
+  source = "../../../modules/iam_role"
 }
-inputs ={
-    role_name = "rolle"
+
+
+inputs = {
+  role_name = "rolle"
+  policy_document = [{
+    Effect  = "Allow"
+    Action = ["sts:AssumeRole"]
+    Principal: {
+        "Service": "lambda.amazonaws.com"
+      },
+    }
+  ]
 }

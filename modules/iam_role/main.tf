@@ -1,14 +1,7 @@
-data "aws_iam_policy_document" "lambda_assume_role_policy" {
-  statement {
-    effect  = "Allow"
-    actions = ["sts:AssumeRole"]
-    principals {
-      type        = "Service"
-      identifiers = ["lambda.amazonaws.com"]
-    }
-  }
-}
 resource "aws_iam_role" "lambda_role" {
   name               = var.role_name
-  assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
+  assume_role_policy =   jsonencode({
+    Version = "2012-10-17"
+    Statement = var.policy_document
+  })
 }
