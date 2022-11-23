@@ -3,15 +3,19 @@ include "root" {
 }
 
 terraform {
-    source = "../../../modules/iam_policy"
+  source = "../../../modules/iam_policy"
 }
-inputs ={ 
-    iam_name = "iam_name"
-    iam_policy =  [
-           {
-        Action   = ["s3:ListAllMyBuckets", "s3:ListBucket", "s3:HeadBucket"]
-        Effect   = "Allow"
-        Resource = "*"
-      }
-    ]
+inputs = {
+  iam_name = "iam_name"
+  iam_policy = [
+    {
+      Action   = ["dynamodb:List*",
+                "dynamodb:*",
+                "dynamodb:DescribeReservedCapacity*",
+                "dynamodb:DescribeLimits",
+                "dynamodb:DescribeTimeToLive"]
+      Effect   = "Allow"
+      Resource = "*"
+    }
+  ]
 }

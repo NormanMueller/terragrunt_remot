@@ -8,10 +8,10 @@ dependency "role" {
 }
 
 terraform {
-    source = "../../../modules/lambda"
+  source = "../../../modules/lambda"
 }
-inputs ={
-  lambda_name = "test-lambda"
+inputs = {
+  lambda_name       = "test-lambda"
   source_file       = "${get_parent_terragrunt_dir()}/lambda_code/src/main.py"
   output_path       = "main.zip"
   lambda_role       = dependency.role.outputs.arn

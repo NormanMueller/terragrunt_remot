@@ -5,3 +5,8 @@ variable "role_name" {
 variable "policy_document" {
   type    = list
 }
+
+variable "list_policys" {
+  type    = list
+}
+
